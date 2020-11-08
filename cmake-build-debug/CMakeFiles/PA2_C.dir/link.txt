@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/PA2_C.dir/main.cpp.o  -o PA2_C 
