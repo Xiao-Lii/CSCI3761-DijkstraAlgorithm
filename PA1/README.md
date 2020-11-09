@@ -3,15 +3,14 @@
 ## Implementing a Server and Client 
 
 ###   Description of Program
-Two programs of a server and client will connect with each other on the port #: 52200 and will 
+<p>Two programs of a server and client will connect with each other on the port #: 52200 and will 
 interact with each other through the menu options of: Previewing the remote server directory,
 downloading a file from the server, uploading a file to the server, to view the user's local
 directory, and to terminate the program/connection between the two. 
 
 <b>NOTE:</b> 	The max size of the characters to be read/written to & from a file is 1000 characters. 
 	The max size of the file name to be uploaded or read from is 50 characters.
-	The client is unable to type in any specific linux commands and must abide by menu options.
-
+	The client is unable to type in any specific linux commands and must abide by menu options.</p>
 
 ### Source Files
 
