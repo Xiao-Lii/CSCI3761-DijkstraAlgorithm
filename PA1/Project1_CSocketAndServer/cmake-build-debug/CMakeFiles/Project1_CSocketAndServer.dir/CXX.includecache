@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/Project1_CSocketAndServer/main.cpp
+iostream
+-
+stdlib.h
+-
+string.h
+-
+stdio.h
+-
+unistd.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+sys/stat.h
+-
+sys/sendfile.h
+-
+fcntl.h
+-
+

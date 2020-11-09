@@ -1,0 +1,8 @@
+CMakeLists.txt
+README.txt
+a.out
+cmake-build-debug
+download.txt
+main.cpp
+temp.txt
+uploadFile.txt

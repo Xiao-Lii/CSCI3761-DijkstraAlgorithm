@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/Project1_CSocketAndServer"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/Project1_CSocketAndServer/cmake-build-debug
