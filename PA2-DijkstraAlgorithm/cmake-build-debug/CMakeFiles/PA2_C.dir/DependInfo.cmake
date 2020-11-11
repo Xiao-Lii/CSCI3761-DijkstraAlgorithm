@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/PA2/main.cpp" "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/PA2/cmake-build-debug/CMakeFiles/PA2_C.dir/main.cpp.o"
+  "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/PA2-DijkstraAlgorithm/main.cpp" "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/PA2-DijkstraAlgorithm/cmake-build-debug/CMakeFiles/PA2_C.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

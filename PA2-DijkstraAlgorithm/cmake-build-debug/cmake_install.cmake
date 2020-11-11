@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/PA2
+# Install script for directory: /mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/PA2-DijkstraAlgorithm
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/PA2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/Lee/Documents/Fall 2020/CSCI 3761 - 001 Computer Networks/Projects/PA2-DijkstraAlgorithm/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
