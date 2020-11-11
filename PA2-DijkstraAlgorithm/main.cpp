@@ -6,6 +6,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <limits.h>
+#include <ctype.h>
 
 
 // Some standard Defines used in the program
@@ -127,7 +128,10 @@ int main(int argc, char *argv[] ){
         // The following is not optimal, but it works well enough.
         printf ("Update format should be: <YourNode> <Destination Node> <Cost>\n");
 
-        // this is all setuo for the select statement. I will wait on input
+        // ************ ADDED THIS LINE TO NOTIFY USER OF ROUTE FORMAT ************
+        printf ("Route format should be: ROUTE <StartingNode>\n");
+
+        // this is all setup for the select statement. I will wait on input
         // from the user or the network or both!
         FD_ZERO(&socketFDS);
         FD_SET(listeningSocket, &socketFDS);
@@ -137,7 +141,7 @@ int main(int argc, char *argv[] ){
 
         // select block until something arrives on STDIN/socket or timeout
 #ifdef DEBUG1
-        printf ("Main: Please enter a command(print, update, refresh)\n");
+        printf ("Main: Please enter a command(print, update, refresh, route)\n");
 #endif
 
         rc = select (listeningSocket+1, &socketFDS, NULL, NULL, &timeout);
@@ -284,7 +288,13 @@ int getInputFromUser(struct neighbor_struct neighbors[], int myNode, struct new_
         exit (1);
     }
 
-    rc = sscanf(buffer, "%s %d %d %d ", command, &fromNode, &toNode,  &cost);
+    rc = sscanf(buffer, "%s %d %d %d ", command, &fromNode, &toNode, &cost);
+
+    // Converting commands to lowercase in case of uppercase use
+    for(int i = 0; i < sizeof(command); i++){
+        command[i] = tolower(command[i]);
+    }
+
     // Note that I may only scan one item, C handles that.
     // the other variables not scanned will be
 #ifdef DEBUG
@@ -304,6 +314,17 @@ int getInputFromUser(struct neighbor_struct neighbors[], int myNode, struct new_
         return 0;
     }
 
+    // Route Option - 1st Input = FromNode which is actually representing toNode, we want returned cost
+    // Because of this, we need this checked prior to checking if fromNode != myNode -> exit out of processing
+    else if (strcmp(command, "route") == 0){
+        // Scans User-input by order: command, fromNode, toNode, cost
+        // Saves our desired toNode as //fromNode cause of the way our buffer is
+        toNode = fromNode;      // Changing to toNode so psuedocode of Names/Logic make sense
+        fromNode = myNode;
+        printf("\nThe lowest cost from node %d to node %d is: %d\nThe 1st node to travel to is: node %d\n\n",
+               myNode, toNode, DV[toNode].cost, DV[toNode].previousNode);
+    }
+
     // Optimizing here, if the fromNode is not me, i can't process anything
     else if (fromNode != myNode)
         return -1;
@@ -315,43 +336,35 @@ int getInputFromUser(struct neighbor_struct neighbors[], int myNode, struct new_
     else if (rc < 4) // error, i need 4 parameters if this is an update
         return -1;
 
-    // If i get to this point, i know the command is an update.
     // NEED TO SET THE NEW COST AND TELL MY NEIGHBORS
     else if (strcmp(command, "update") == 0){
         // If User's input fromNode matches myNode, we want to update that fromNode
         if (fromNode == myNode) {
             for (int i = 0; i < numberOfNodes; i++) {
+                for (int j = 0; j < numberOfNodes; j++) {
                 // Checking that    1. From Node and Desire To Node exists
                 //                  2. Cost is not Zero because we can't change the cost if FromNode = ToNode
-                if (DV[i].fromNode == fromNode && DV[i].toNode == toNode && DV[i].cost != 0) {
-                    // Checking if FromNode = ToNode, if so, we need to update cost to be 0
-                    if (DV[i].fromNode == toNode && DV[i].cost == -1)
-                        DV[i].cost = 0;
-
-                    // However, now we have to check if the FromNode and ToNode are valid as neighbors
-                    // Else, we shouldn't update the cost
-                    printf("\n");
-                    for (int j = 0; j < numberOfNodes; j++) {
-                        if (DV[i].toNode == neighbors[j].nodeNum) {
-                            printf("Valid: %d and %d are neighbors. Old cost %d vs. New Cost %d\n",
-                                   DV[i].fromNode, neighbors[j].nodeNum, DV[i].cost, cost);
-                            // Checking if the new cost is greater than our old cost
-                            // If yes = new cost overwrites old cost between FromNode and ToNode
-                            if (DV[i].cost > cost){
-                                DV[i].cost = cost;
-                                printf("Saving new cost from %d and %d as %d\n\n",
-                                       DV[i].fromNode, neighbors[j].nodeNum, DV[i].cost);
-                                sendDVToNeighbor(neighbors, myNode, DV, numberOfNodes); // Updating neighbors of new cost
-                            }
-                            else
-                                printf("The new cost between %d and %d is greater than its previous cost.\n"
-                                       "Due to this, the cost will not be updated.\n\n", DV[i].fromNode, DV[i].toNode);
-                        }
+                //                  3. That our toNode of index i, exists as neighbor in that node's neighbor table
+                //                  4. That if all above = true, our new cost < old cost = update cost, otherwise no
+                if (DV[i].fromNode == fromNode && DV[i].toNode == toNode && DV[i].cost != 0 & DV[i].toNode == neighbors[j].nodeNum) {
+                    // Checking if the new cost is greater than our old cost
+                    // If yes = new cost overwrites old cost between FromNode and ToNode
+                    if (DV[i].cost > cost){
+                        DV[i].cost = cost;
+                        printf("\nFrom node %d to node %d, the cost has been updated to: %d\n\n",
+                               DV[i].fromNode, neighbors[j].nodeNum, DV[i].cost);
+                        sendDVToNeighbor(neighbors, myNode, DV, numberOfNodes); // Updating neighbors of new cost
+                    }
+                    else
+                        printf("\nThe new cost between node %d and node %d is greater than its previous cost.\n"
+                               "Due to this, the cost will not be updated.\n\n", DV[i].fromNode, DV[i].toNode);
                     }
                 }
             }
         }
     }
+    else
+        printf("\nError: Not a valid command. Please try again.\n");
 
     return 0;
 }
@@ -413,7 +426,6 @@ int initDV(struct new_vector_struct DV[], int numberOfNodes, int myNode)
 
 // this is the function where i loop through all my neighbors and send my DV
 // whether it changed or not
-
 int sendDVToNeighbor(struct neighbor_struct neighbors[], int myNode,
                      struct new_vector_struct DV[], int numberOfNodes ){
     int sd; //socket description

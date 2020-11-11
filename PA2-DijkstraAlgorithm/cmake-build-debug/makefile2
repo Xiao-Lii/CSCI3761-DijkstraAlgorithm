@@ -7,7 +7,7 @@
   CFLAGS  = -g -Wall
 
   # the build target executable:
-  TARGET = DV-functions
+  TARGET = main.cpp
 
   all: $(TARGET) 
 
