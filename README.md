@@ -1,4 +1,4 @@
-# CSCI 3761 - Intro To Computer Networks - University of Colorado Denver
+## CSCI 3761 - Intro To Computer Networks - University of Colorado Denver
 
 ## Project Outline 
 
