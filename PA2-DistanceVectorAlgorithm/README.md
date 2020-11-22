@@ -1,8 +1,9 @@
 # CSCI 3761 - Intro to Computer Networks - PA#2
 ## Dijkstra's Algorithm - Multi-node Pathway
+### Please note that Professor Dave Ogle of UC Denver is responsible for 90% of this code. The goal of this project was to be able to read someone else's code, add functional implementations such as reading/creating the neighbor/vector tables and adding additional menu functions regarding: update, refresh, print, and route.
 
 Utilizing the Distance Vector Algorithm to find the most cost-efficient path between multiple nodes. Ability to view 
-that node's neighbors, update the cost to travel to its neighbors, and refresh it's information to all the nodes involved.
+that node's neighbors, update the cost to travel to its neighbors, and refresh it's information to all the nodes involved. 
 
 <b>Note:</b> The program is set to update automatically every 30 seconds to ensure each node has the most up-to-date information
 
