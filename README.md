@@ -17,7 +17,7 @@ The goal of this project is to dynamically update our nodes to understand which 
  
  By reading each node's table of neighbors and their cost associated with them, we can paint a better picture of available routes per neighbors and their cost. 
  
- - <b>Note:<b> To run a node under a Linux system, the format must be: <NeighborTxtFile> <VectorsTxtFile> <NodeNumToOpen> <PortNumberOfNodeNum> <TotalNumberOfNodes> 
+ - <b>Note:<b> To run a node under a Linux system/subsystem, the format must be: <NeighborTxtFile> <VectorsTxtFile> <NodeNumToOpen> <PortNumberOfNodeNum> <TotalNumberOfNodes> 
  
  Example of wanting to open node 1: "neighbors1.txt vectors.txt 1 18181 5" - Please ensure to properly compile the program, prior to opening any nodes. Only the corresponding neighbor file and port number will allow the correct node to be ran successfully. Port numbers per node can befound within the neighbor txt files. 
 
