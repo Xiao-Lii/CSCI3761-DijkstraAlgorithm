@@ -17,13 +17,18 @@ The goal of this project is to dynamically update our nodes to understand which 
  
  By reading each node's table of neighbors and their cost associated with them, we can paint a better picture of available routes per neighbors and their cost. 
  
- - <b>Note:<b> To run a node under a Linux system/subsystem, the format must be: <NeighborTxtFile> <VectorsTxtFile> <NodeNumToOpen> <PortNumberOfNodeNum> <TotalNumberOfNodes> 
- 
- Example of wanting to open node 1: "neighbors1.txt vectors.txt 1 18181 5" - Please ensure to properly compile the program, prior to opening any nodes. Only the corresponding neighbor file and port number will allow the correct node to be ran successfully. Port numbers per node can befound within the neighbor txt files. 
+<b>Note:</b> The program is set to update automatically every 30 seconds to ensure each node has the most up-to-date information
 
- - There are 3 main functions the user can implement once the node is running:
+### Menu-Input Options Available / Functional:
+ - <b>print</b> - Prints the Current Node's Distance Vector Table to any nodes it may see
+ - <b>refresh</b> - Sends the Current Node's Distance Vector Table its Neighbors
+ - <b>update</b> - Updates the Current Node's Distance Vector table
+   <p><b>Update Format</b> (Without brackets but include spaces): [FromNode] [ToNode] [NewCost]</p>
+ - <b>route</b> - Display's the lowest cost route to desired node and which node to hop to
+   <p><b>Route Format</b> (Without brackets but include spaces): route [ToNode]</p>
  
-   1. "print" - Prints the node's current distance vector table from itself to any nodes it may see.
-   2. "refresh" - Sends the current node's distance vector table to all of its neighboring nodes 
-   3. "update" - Format: <FromNode> <ToNode> <NewCost> - Updates the cost from itself to a neighboring node, as long as the new cost is less than its previous. 
-   4. "route" - Format: "route <ToNode>" - This will print the node the user should take next from its current node, to get to the desired 'ToNode'
+ Note: Menu-input text is not case sensitive, menu will handle any lowercase or uppercase discrepancies. <b> To run a node under a Linux system, the format must be:</b> [NeighborTxtFile] [VectorsTxtFile] [NodeNumToOpen] [PortNumberOfNodeNum] [TotalNumberOfNodes]
+ 
+Example of wanting to open node 1: "neighbors1.txt vectors.txt 1 18181 5"
+ 
+Please ensure to properly compile the program, prior to opening any nodes. Only the corresponding neighbor file and port number will allow the correct node to be ran successfully. Port numbers per node can be found within the neighbor txt files. 
