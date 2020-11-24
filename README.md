@@ -25,7 +25,7 @@ The goal of this project is to dynamically update our nodes to understand which 
  - <b>print</b> - Prints the Current Node's Distance Vector Table to any nodes it may see
  - <b>refresh</b> - Sends the Current Node's Distance Vector Table its Neighbors
  - <b>update</b> - Updates the Current Node's Distance Vector table
-   <p><b>Update Format</b> (Without brackets but include spaces): [FromNode] [ToNode] [NewCost]</p>
+   <p><b>Update Format</b> (Without brackets but include spaces): update [FromNode] [ToNode] [NewCost]</p>
  - <b>route</b> - Display's the lowest cost route to desired node and which node to hop to
    <p><b>Route Format</b> (Without brackets but include spaces): route [ToNode]</p>
  
