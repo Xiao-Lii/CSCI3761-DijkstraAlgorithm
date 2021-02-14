@@ -1,5 +1,4 @@
-## CSCI 3761 - Intro To Computer Networks - University of Colorado Denver
-
+Introduction To Computer Networks - Project List
 ## Project Outline 
 
 ### PA1 - Server and Client - C
