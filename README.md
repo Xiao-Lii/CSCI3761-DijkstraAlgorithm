@@ -1,11 +1,11 @@
 Introduction To Computer Networks - Project List
 ## Project Outline 
 
-### PA1 - Server and Client - C
+### Programming Assignment #1 - Server and Client - C
 
 Implementing a server and client
 
-### PA2 - Dijkstra's Algorithm - C/C++
+###  Programming Assignment #2 - Dijkstra's Algorithm - C/C++
 
 <b>Known bug/Error Handling Issue:</b> When attempting to update the cost between two nodes, it will update the DV table for the node the update was attempted on, but the DV tables for the neighboring nodes do not update. This was originally part of the professor's code that was provided to us, may fix at a later date. 
 
