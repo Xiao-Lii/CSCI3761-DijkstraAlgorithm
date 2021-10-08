@@ -3,11 +3,11 @@ Introduction To Computer Networks - Project List
 
 ### Programming Assignment #1 - Server and Client - C
 
-Implementing a server and client
+Implementing a basic server and client system where the each may connect with each other utilizing a linux bash shell scripst. After a successful connection, each will receive a confirmation of that status and when the connection is lost. 
 
 ###  Programming Assignment #2 - Dijkstra's Algorithm - C/C++
 
-<b>Known bug/Error Handling Issue:</b> When attempting to update the cost between two nodes, it will update the DV table for the node the update was attempted on, but the DV tables for the neighboring nodes do not update. This was originally part of the professor's code that was provided to us, may fix at a later date. 
+<b>Known bug/Error Handling Issue:</b> When attempting to update the cost between two nodes, it will update the DV table for the node the update was attempted on, but the DV tables for the neighboring nodes do not update. This bug was intentionally left for debugging in the future. Will notate if this has been resolved in main branch read me.
 
 Utilizing Dijkstra's Algorithm to find the most cost-effective paths/routes when traveling between multiple nodes. In this case, we have 5 nodes who can only visibly see the cost to travel to their neighbors.
 The goal of this project is to dynamically update our nodes to understand which routes are the most cost-effective and efficient to its desired destination, by creating two structures per node. 
